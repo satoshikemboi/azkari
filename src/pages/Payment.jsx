@@ -76,14 +76,51 @@ export default function Payment() {
 
         {/* Status */}
         <div className="px-5 mt-4">
-          <div className="flex justify-between text-[11px] text-gray-500">
-            <span>同意</span>
-            <span className="text-sky-500 font-semibold">支払</span>
-            <span>受取</span>
+
+          {/* Track with nodes */}
+          <div className="relative flex items-center">
+
+            {/* Solid line: 同意 → 支払 */}
+            <div
+              className="absolute h-[2px] bg-sky-500"
+              style={{ left: 10, right: "50%", top: 9 }}
+            ></div>
+
+            {/* Dashed line: 支払 → 受取 */}
+            <div
+              className="absolute h-[2px]"
+              style={{
+                left: "50%",
+                right: 10,
+                top: 9,
+                backgroundImage:
+                  "repeating-linear-gradient(to right, #7dd3fc 0, #7dd3fc 5px, transparent 5px, transparent 10px)",
+              }}
+            ></div>
+
+            {/* Node 1: 同意 (completed) */}
+            <div className="relative z-10 w-5 h-5 rounded-full bg-sky-500 flex items-center justify-center flex-shrink-0">
+              <div className="w-2 h-2 rounded-full bg-white"></div>
+            </div>
+
+            <div className="flex-1"></div>
+
+            {/* Node 2: 支払 (active) */}
+            <div className="relative z-10 w-5 h-5 rounded-full bg-sky-500 ring-[3px] ring-sky-200 flex items-center justify-center flex-shrink-0">
+              <div className="w-2 h-2 rounded-full bg-white"></div>
+            </div>
+
+            <div className="flex-1"></div>
+
+            {/* Node 3: 受取 (incomplete) */}
+            <div className="relative z-10 w-5 h-5 rounded-full border-2 border-sky-300 bg-white flex-shrink-0"></div>
           </div>
 
-          <div className="mt-2 h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div className="h-full w-1/2 bg-sky-500 rounded-full"></div>
+          {/* Labels */}
+          <div className="flex justify-between text-[11px] mt-2">
+            <span className="text-sky-500">同意</span>
+            <span className="text-sky-500 font-semibold">支払</span>
+            <span className="text-gray-400">受取</span>
           </div>
 
           <div className="flex justify-end mt-2">

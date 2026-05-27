@@ -184,27 +184,51 @@ export default function UnlockTicket() {
 
         {/* Progress */}
         <div className="px-5">
-          <div className="flex justify-between text-[11px] text-gray-500 mb-2">
-            <span>同意</span>
-            <span>支払</span>
-            <span className="text-sky-500 font-medium">受取</span>
-          </div>
 
+          {/* Track with nodes */}
           <div className="relative flex items-center">
-            <div className="absolute w-full h-[3px] bg-sky-200 rounded-full"></div>
-            <div className="absolute left-0 w-[72%] h-[3px] bg-sky-500 rounded-full"></div>
 
-            <div className="relative z-10 w-5 h-5 rounded-full bg-sky-500"></div>
+            {/* Solid line: 同意 → 支払 (completed) */}
+            <div
+              className="absolute h-[2px] bg-sky-500"
+              style={{ left: 10, right: "50%", top: 9 }}
+            ></div>
+
+            {/* Solid line: 支払 → 受取 (completed) */}
+            <div
+              className="absolute h-[2px] bg-sky-500"
+              style={{ left: "50%", right: 10, top: 9 }}
+            ></div>
+
+            {/* Node 1: 同意 (completed) */}
+            <div className="relative z-10 w-5 h-5 rounded-full bg-sky-500 flex items-center justify-center flex-shrink-0">
+              <div className="w-2 h-2 rounded-full bg-white"></div>
+            </div>
+
             <div className="flex-1"></div>
-            <div className="relative z-10 w-5 h-5 rounded-full bg-sky-500"></div>
+
+            {/* Node 2: 支払 (completed) */}
+            <div className="relative z-10 w-5 h-5 rounded-full bg-sky-500 flex items-center justify-center flex-shrink-0">
+              <div className="w-2 h-2 rounded-full bg-white"></div>
+            </div>
+
             <div className="flex-1"></div>
-            <div className="relative z-10 w-5 h-5 rounded-full border-[3px] border-sky-500 bg-white flex items-center justify-center">
-              <div className="w-2 h-2 bg-sky-500 rounded-full"></div>
+
+            {/* Node 3: 受取 (active — red-400 with ring) */}
+            <div className="relative z-10 w-5 h-5 rounded-full bg-red-400 ring-[3px] ring-red-200 flex items-center justify-center flex-shrink-0">
+              <div className="w-2 h-2 rounded-full bg-white"></div>
             </div>
           </div>
 
+          {/* Labels */}
+          <div className="flex justify-between text-[11px] mt-2">
+            <span className="text-sky-500">同意</span>
+            <span className="text-sky-500">支払</span>
+            <span className="text-red-400 font-semibold">受取</span>
+          </div>
+
           <div className="flex justify-end mt-2">
-            <div className="bg-sky-100 text-sky-500 text-[10px] px-2 py-[3px] rounded-full">
+            <div className="bg-red-50 text-red-400 text-[10px] px-2 py-[3px] rounded-full">
               あなた
             </div>
           </div>
@@ -233,7 +257,7 @@ export default function UnlockTicket() {
                   ¥{payment.amount}
                 </h2>
                 <p className="text-[15px] text-black mt-3">{payment.itemName}</p>
-                <p className="text-[11px] text-gray-700 mt-1">配送料</p>
+                <p className="text-[11px] text-gray-700 mt-1">チケット手数料</p>
               </div>
             </div>
           </div>
@@ -253,7 +277,7 @@ export default function UnlockTicket() {
               {confirmed && <Check className="w-3 h-3 text-white" />}
             </div>
             <span className="text-[13px] text-gray-700 leading-relaxed">
-              商品を受け取り、内容を確認しました
+              表示された金額を全額支払うことに同意します
             </span>
           </button>
         </div>
