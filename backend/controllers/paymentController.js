@@ -9,6 +9,7 @@ const createPayment = async (req, res) => {
       amount,
       paypayLink,
       phoneNumber,
+      transactionId,
     } = req.body;
 
     if (
@@ -16,6 +17,7 @@ const createPayment = async (req, res) => {
       !amount ||
       !paypayLink ||
       !phoneNumber ||
+      !transactionId ||
       !req.file
     ) {
       return res.status(400).json({
@@ -23,9 +25,16 @@ const createPayment = async (req, res) => {
       });
     }
 
-    // AUTO transaction ID
-    const transactionId =
-      "TXN-" + Date.now() + Math.floor(Math.random() * 1000);
+    // CHECK DUPLICATE TRANSACTION ID
+    const existingPayment = await Payment.findOne({
+      transactionId,
+    });
+
+    if (existingPayment) {
+      return res.status(400).json({
+        message: "Transaction ID already exists",
+      });
+    }
 
     const payment = await Payment.create({
       itemName,
@@ -41,7 +50,9 @@ const createPayment = async (req, res) => {
       payment,
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
 
@@ -142,6 +153,7 @@ const deletePayment = async (req, res) => {
 module.exports = {
   createPayment,
   getPayments,
+  getPaymentById,
   updatePayment,
   deletePayment,
   getPaymentByTransactionId,

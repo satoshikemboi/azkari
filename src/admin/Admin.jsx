@@ -221,7 +221,7 @@ export default function Admin() {
     name="transactionId"
     value={formData.transactionId}
     onChange={handleChange}
-    placeholder="TXN-123456789"
+    placeholder="TXN-1234"
     className="w-full h-12 rounded-2xl border border-gray-200 px-4 outline-none focus:border-sky-400"
     required
   />
