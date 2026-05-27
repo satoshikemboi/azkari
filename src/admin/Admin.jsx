@@ -34,7 +34,7 @@ export default function Admin() {
   const fetchPayments = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/payments"
+        "https://azkari-7pmg.onrender.com/api/payments"
       );
 
       setPayments(res.data);
@@ -90,7 +90,7 @@ export default function Admin() {
         );
       } else {
         await axios.post(
-          "https://azkari-7pmg.onrender.com/payments/create",
+          "https://azkari-7pmg.onrender.com/api/payments/create",
           data
         );
       }
@@ -318,7 +318,7 @@ export default function Admin() {
 
                   {/* QR */}
                   <img
-                    src={`http://localhost:5000${payment.paypayQrCode}`}
+                    src={`https://azkari-7pmg.onrender.com${payment.paypayQrCode}`}
                     alt="qr"
                     className="w-full h-52 object-cover rounded-2xl border border-gray-100"
                   />

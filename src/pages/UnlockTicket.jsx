@@ -327,4 +327,4 @@ function NavItem({ icon, label, active = false }) {
       <span className="mt-1">{label}</span>
     </div>
   );
-}
+} 
