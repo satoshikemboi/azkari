@@ -85,12 +85,12 @@ export default function Admin() {
 
       if (editingId) {
         await axios.put(
-          `http://localhost:5000/api/payments/${editingId}`,
+          `https://azkari-7pmg.onrender.com/api/payments/${editingId}`,
           data
         );
       } else {
         await axios.post(
-          "http://localhost:5000/api/payments/create",
+          "https://azkari-7pmg.onrender.com/payments/create",
           data
         );
       }
@@ -118,7 +118,7 @@ export default function Admin() {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/payments/${id}`
+        `https://azkari-7pmg.onrender.com/api/payments/${id}`
       );
 
       fetchPayments();

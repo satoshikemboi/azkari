@@ -22,7 +22,7 @@ export default function Payment() {
   const fetchPayment = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/payments/transaction/${transactionId}`
+        `https://azkari-7pmg.onrender.com/api/payments/transaction/${transactionId}`
       );
 
       setPayment(res.data);
@@ -55,7 +55,7 @@ export default function Payment() {
   }
 
   const qrUrl = payment.paypayQrCode
-    ? `http://localhost:5000${payment.paypayQrCode}`
+    ? `https://azkari-7pmg.onrender.com${payment.paypayQrCode}`
     : null;
 
   return (

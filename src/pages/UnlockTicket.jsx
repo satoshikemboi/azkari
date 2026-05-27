@@ -31,7 +31,7 @@ export default function UnlockTicket() {
       setError("");
 
       const res = await axios.get(
-        `http://localhost:5000/api/payments/transaction/${transactionId}`
+        `https://azkari-7pmg.onrender.com/api/payments/transaction/${transactionId}`
       );
 
       setPayment(res.data);
