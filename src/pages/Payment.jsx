@@ -24,7 +24,6 @@ export default function Payment() {
       const res = await axios.get(
         `https://azkari-7pmg.onrender.com/api/payments/transaction/${transactionId}`
       );
-
       setPayment(res.data);
     } catch (error) {
       console.log(error);
@@ -41,7 +40,7 @@ export default function Payment() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-pulse text-gray-400">Loading payment...</div>
+        <div className="animate-pulse text-gray-400">読み込み中...</div>
       </div>
     );
   }
@@ -49,7 +48,7 @@ export default function Payment() {
   if (!payment) {
     return (
       <div className="min-h-screen flex items-center justify-center text-gray-500 bg-gray-50">
-        Invalid Transaction ID
+        取引IDが無効です
       </div>
     );
   }
@@ -69,7 +68,7 @@ export default function Payment() {
           </button>
 
           <h1 className="text-[15px] font-semibold text-gray-800">
-            Payment
+            お支払い
           </h1>
 
           <HelpCircle className="w-5 h-5 text-gray-400" />
@@ -78,9 +77,9 @@ export default function Payment() {
         {/* Status */}
         <div className="px-5 mt-4">
           <div className="flex justify-between text-[11px] text-gray-500">
-            <span>Agreement</span>
-            <span className="text-sky-500 font-semibold">Payment</span>
-            <span>Receive</span>
+            <span>同意</span>
+            <span className="text-sky-500 font-semibold">支払</span>
+            <span>受取</span>
           </div>
 
           <div className="mt-2 h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -89,7 +88,7 @@ export default function Payment() {
 
           <div className="flex justify-end mt-2">
             <span className="text-[10px] bg-sky-100 text-sky-600 px-2 py-1 rounded-full">
-              Active
+              進行中
             </span>
           </div>
         </div>
@@ -97,8 +96,8 @@ export default function Payment() {
         {/* Amount Card */}
         <div className="mt-8 flex justify-center">
           <div className="w-[230px] h-[230px] rounded-full bg-gradient-to-br from-yellow-300 to-yellow-500 flex flex-col items-center justify-center shadow-md">
-            
-            <p className="text-[13px] text-black/80">Amount</p>
+
+            <p className="text-[13px] text-black/80">金額</p>
 
             <h2 className="text-[44px] font-bold text-black">
               ¥{payment.amount}
@@ -110,7 +109,7 @@ export default function Payment() {
 
             <div className="flex items-center gap-1 mt-2 text-[11px] text-black/70">
               <ShieldCheck className="w-4 h-4" />
-              Secure Payment
+              安全なお支払い
             </div>
           </div>
         </div>
@@ -120,28 +119,27 @@ export default function Payment() {
           <div className="border rounded-3xl p-5 shadow-sm bg-white">
 
             <div className="flex flex-col items-center">
-
               {qrUrl ? (
                 <img
                   src={qrUrl}
-                  alt="QR Code"
+                  alt="QRコード"
                   className="w-[160px] h-[160px] object-cover rounded-xl border"
                 />
               ) : (
                 <div className="w-[160px] h-[160px] flex items-center justify-center bg-gray-100 rounded-xl text-gray-400 text-sm">
-                  No QR uploaded
+                  QRコードなし
                 </div>
               )}
 
               <p className="text-[12px] text-gray-500 mt-3">
-                Scan QR to complete payment
+                QRコードをスキャンしてお支払いを完了してください
               </p>
             </div>
 
             {/* Phone */}
             <div className="mt-5">
               <p className="text-[12px] text-gray-500 mb-2">
-                PayPay Number
+                PayPay番号
               </p>
 
               <div className="flex items-center justify-between bg-gray-100 rounded-2xl px-4 py-3">
@@ -166,7 +164,7 @@ export default function Payment() {
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 h-[50px] rounded-2xl bg-sky-500 text-white font-semibold active:scale-[0.98] transition"
               >
-                Open Payment Link
+                支払いリンクを開く
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
@@ -175,7 +173,7 @@ export default function Payment() {
 
         {/* Footer note */}
         <div className="text-center text-[11px] text-gray-400 mt-6 px-6">
-          After payment, your transaction will be automatically confirmed.
+          お支払い後、取引は自動的に確認されます。
         </div>
       </div>
     </div>
